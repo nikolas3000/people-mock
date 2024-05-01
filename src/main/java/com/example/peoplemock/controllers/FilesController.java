@@ -28,11 +28,11 @@ public class FilesController {
         this.logger = logger;
 
     }
-
+    /*
     @PostMapping(value = "/upload",consumes = "multipart/form-data")
     public ResponseEntity <FileMetadata> uploadFile(@RequestParam("file") MultipartFile file){
         logger.getInfoPath("/upload");
-        //Проверка не пустой ли файл
+
         if (file.isEmpty()){
             return ResponseEntity.badRequest().build();
         }
@@ -51,4 +51,6 @@ public class FilesController {
         // Возвращаем метаданные файла в ответе
         return ResponseEntity.ok(fileMetadata);
     }
+
+     */
 }

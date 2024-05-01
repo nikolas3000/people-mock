@@ -1,14 +1,22 @@
 package com.example.peoplemock.logic.files;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
 public class FileMetadataService {
 
-    //добавить код для сохранения и извлечения метаданных файла из бд
+
+    private List<FileMetadata> filesMeta = new ArrayList<>();
+    private FileMetadata fileMetadata;
 
     public void saveFileMetadata(FileMetadata fileMetadata) {
-        // Сохранение данных файла в бд
+        filesMeta.add(fileMetadata);
+
     }
 
 

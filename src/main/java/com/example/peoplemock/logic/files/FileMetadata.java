@@ -15,17 +15,20 @@ public class FileMetadata  {
     private String fileType;
     private long fileSize;
     //С датой нужно разобраться, без даты работает
-    private LocalDateTime uploadDate;
+    //private LocalDateTime uploadDate;
 
 
-    public FileMetadata (String fileUuid, String fileName, String fileType, long fileSize, LocalDateTime uploadDate){
+    public FileMetadata (String fileUuid, String fileName, String fileType, long fileSize/*, LocalDateTime uploadDate*/){
         this.fileUuid = fileUuid;
         this.fileName = fileName;
         this.fileType = fileType;
         this.fileSize = fileSize;
-        this.uploadDate = uploadDate;
+        //this.uploadDate = uploadDate;
     }
-    public FileMetadata ( String fileName){
+    /*
+    public getFileMetadata (String fileUuid, String fileName, String fileType, long fileSize){
 
     }
+
+     */
 }

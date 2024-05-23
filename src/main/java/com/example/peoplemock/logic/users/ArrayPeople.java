@@ -1,4 +1,4 @@
-package com.example.peoplemock.logic;
+package com.example.peoplemock.logic.users;
 
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,7 @@ import java.util.List;
 @Component
 public class ArrayPeople {
     private List<String> userNames;
+
     public ArrayPeople() {
 
         userNames = new ArrayList<>();

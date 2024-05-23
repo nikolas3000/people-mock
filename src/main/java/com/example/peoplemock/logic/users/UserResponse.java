@@ -10,7 +10,7 @@ import lombok.Setter;
 
 public class UserResponse {
 
-
+    private String userUuid;
     private String firstName;
     private String lastName;
     public UserResponse() {

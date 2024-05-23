@@ -3,14 +3,12 @@ package com.example.peoplemock.controllers;
 
 import com.example.peoplemock.Logger;
 import com.example.peoplemock.ObjectMapperConfig;
+import com.example.peoplemock.logic.api.ApiResponse;
 import com.example.peoplemock.logic.files.FileMetadata;
 import com.example.peoplemock.logic.files.FileMetadataService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.LocalDateTime;
@@ -33,7 +31,12 @@ public class FilesController {
         this.logger = logger;
         this.objectMapperConfig = objectMapperConfig;
     }
+    /*
+    @GetMapping("/getfilemetadate")
+    public ApiResponse<FileMetadata> getFileMetadata(@PathVariable String fileUuid)
 
+
+     */
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
     public FileMetadata uploadFile(@RequestParam("file") MultipartFile file) {
         logger.getInfoPath("/upload");
@@ -56,7 +59,7 @@ public class FilesController {
             throw new RuntimeException(e);
         }
 
-        FileMetadata fileMetadata = new FileMetadata(fileUuid, fileName, fileType, fileSize, uploadDate);
+        FileMetadata fileMetadata = new FileMetadata(fileUuid, fileName, fileType, fileSize/*, uploadDate*/);
 //        FileMetadata fileMetadata = new FileMetadata(fileName);
 
         try {
@@ -70,5 +73,4 @@ public class FilesController {
 
         return fileMetadata;
     }
-
 }

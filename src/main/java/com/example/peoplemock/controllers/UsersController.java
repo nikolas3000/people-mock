@@ -1,6 +1,6 @@
 package com.example.peoplemock.controllers;
 
-import com.example.peoplemock.logic.ArrayPeople;
+import com.example.peoplemock.logic.users.ArrayPeople;
 import com.example.peoplemock.logic.api.ApiResponse;
 import com.example.peoplemock.logic.users.UserResponse;
 import org.springframework.beans.factory.annotation.*;
@@ -9,6 +9,7 @@ import com.example.peoplemock.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -45,22 +46,23 @@ public class UsersController {
 
 
         logger.getInfoPath("/addArray");
-
+        String userUuid = UUID.randomUUID().toString();
         String firstName = requestData.get("firstName");
         String lastName = requestData.get("lastName");
 
         if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {
 
+            arrayPeople.addUserName(userUuid);
             arrayPeople.addUserName(firstName);
             arrayPeople.addUserName(lastName);
 
 
             try {
-                logger.getInfoResponse(new UserResponse(firstName, lastName), "/addArray");
+                logger.getInfoResponse(new UserResponse(userUuid,firstName, lastName), "/addArray");
             } catch (Exception e) {
                 logger.logError("Error during logging response: ",e);
             }
-            return new ApiResponse<>("success", "User added successfully", new UserResponse(firstName, lastName),null);
+            return new ApiResponse<>("success", "User added successfully", new UserResponse(userUuid,firstName, lastName),null);
         } else {
 
             String errorMessage = "Пустое имя или фамилия";
@@ -70,7 +72,7 @@ public class UsersController {
 
     }
 
-    // Метод для получения всех имен пользователей + логгирование
+    // Метод для получения всех имен пользователей
     @GetMapping("/allPeopleList")
     public ApiResponse<List<String>> getAllUsers() {
 
@@ -91,10 +93,11 @@ public class UsersController {
     @PostMapping(value = "/add", consumes = "application/json")
     public UserResponse echoName(@RequestBody Map<String, String> requestData) {
 
+        String userUuid = UUID.randomUUID().toString();
         String firstName = requestData.get("firstName");
         String lastName = requestData.get("lastName");
 
-        return new UserResponse(firstName, lastName);
+        return new UserResponse(userUuid,firstName, lastName);
     }
 
 }
